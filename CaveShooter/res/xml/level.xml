@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entitytypes>
+
+<hudentry type="score"
+		  x="20"
+		  y="20"
+		  speed="100"
+		  font="segoesc.ttf"
+		  size="20"
+		  color="0xff00ff00" />	
+
+<hudentry type="levelposition"
+		  x="20"
+		  y="40"
+		  speed="0"
+		  font="segoesc.ttf"
+		  size="18"
+		  color="0xff00ffff" />	
+
+<hudentry type="fps"
+		  x="150"
+		  y="20"
+		  speed="0"
+		  font="segoesc.ttf"
+		  size="18"
+		  color="0xff00ffff" />
+		  
+		  
+<hudentry type="lives"
+		  x="760"
+		  y="20"
+		  speed="0"
+		  font="segoesc.ttf"
+		  size="26"
+		  color="0xff0000ff" />	
+
+<playerbullet name="playerBulletRockets"
+		      image="@drawable/playerbullet"
+			  acceleration="300"
+			  speed="100"
+			  hitpoints="1" />	
+
+<playerbullet name="playerBulletBalls"
+		      image="@drawable/playerbullet2"
+			  acceleration="200"
+			  speed="100"
+			  hitpoints="1" />
+
+<player name="player"
+	    image="@drawable/player"
+	    invincibleImage="@drawable/playerinvincible"
+	    acceleration="900"
+	    speed="300"
+	    hitpoints="2" >
+	<gun type="playerBulletRockets" rate="300" level="1" />
+	<gun type="playerBulletBalls" rate="400" level="1" />
+</player>
+
+
+
+<powerup name="redPowerup"
+	     image="@drawable/powerup"
+	     bonusScore="500"
+	     bonusGun="playerBulletBalls"
+	     hitpoints="1" >
+</powerup>
+
+<enemy name="containedRedPowerup"
+	   image="@drawable/enclosedpowerup"
+	   speed="70"
+	   hitpoints="1" >
+	<explosiongun type="redPowerup" />
+</enemy>
+
+
+
+<enemy name="drone"
+	   image="@drawable/drone"
+	   acceleration="10"
+	   speed="120"
+	   hitpoints="1"
+	   bonusScore="10" >
+</enemy>
+
+
+
+<bullet name="batpoo"
+		image="@drawable/batbullet"
+		acceleration="0"
+		speed="50"
+/>	
+
+<explosion name="batExplosion"
+	       image="@drawable/batdead"
+		   acceleration="300"
+		   speed="-200"
+/>
+
+
+<enemy name="bat"
+	   image="@drawable/bat"
+	   acceleration="0"
+	   speed="120"
+	   hitpoints="2"
+	   bonusScore="10" >
+	<explosiongun type="batExplosion" direction="90" />
+	<gun type="batpoo" rate="900" direction="180" gravity="50" gravitydirection="90" /> 
+	<!-- <gun type="batpoo" rate="900" movement="homingmissile" direction="180" turnspeed="100" /> -->
+</enemy>
+
+
+<bullet name="fighterBullet"
+		image="@drawable/fighterbullet"
+		acceleration="300"
+		speed="100"
+/>	
+
+<explosion name="fighterExplosion"
+		   image="@drawable/boom"
+		   lifetime="500"
+/>
+
+<enemy name="fighter"
+	   image="@drawable/fighter"
+	   speed="100"
+	   hitpoints="1"
+	   bonusScore="30" >
+	<gun type="fighterBullet" rate="900" direction="180" />
+	<explosiongun type="fighterExplosion" />
+</enemy>
+
+
+
+<bullet name="podBullet"
+		image="@drawable/podbullet"
+		acceleration="5"
+		speed="100"
+/>	
+
+<enemy name="pod"
+	   image="@drawable/pod"
+	   speed="100"
+	   hitpoints="2"
+	   bonusScore="50" >
+	<gun type="podBullet" rate="300" direction="45" />
+	<gun type="podBullet" rate="300" direction="135" />
+	<gun type="podBullet" rate="300" direction="225" />
+	<gun type="podBullet" rate="300" direction="315" />
+	<gun type="podBullet" rate="300" direction="0" gravity="100" gravitydirection="90" />
+	<gun type="podBullet" rate="300" direction="180" gravity="100" gravitydirection="90" />
+	<gun type="podBullet" rate="300" direction="180" gravity="100" gravitydirection="270" />
+	<gun type="podBullet" rate="300" direction="0" gravity="100" gravitydirection="270" />
+</enemy>
+
+
+
+<!--
+<bullet name="littlepodspawnBullet4"
+	   image="@drawable/enemy3_bullet"
+	   speed="130"
+	   delay="500"
+	   hitpoints="1"
+	   lifetime="2000"
+	   bonusScore="10"
+/>
+
+<bullet name="littlepodspawnBullet3"
+	   image="@drawable/enemy3_bullet"
+	   speed="130"
+	   delay="500"
+	   hitpoints="1"
+	   lifetime="2000"
+	   bonusScore="10" >
+	<gun type="littlepodspawnBullet4" rate="1000" direction="315" />
+</bullet>
+
+<bullet name="littlepodspawnBullet2"
+	   image="@drawable/enemy3_bullet"
+	   speed="130"
+	   delay="500"
+	   hitpoints="1"
+	   lifetime="2000"
+	   bonusScore="10" >
+	<gun type="littlepodspawnBullet3" rate="1000" direction="225" />
+</bullet>
+
+<bullet name="littlepodspawnBullet1"
+	   image="@drawable/enemy3_bullet"
+	   speed="130"
+	   delay="500"
+	   hitpoints="1"
+	   lifetime="2000"
+	   bonusScore="10" >
+	<gun type="littlepodspawnBullet2" rate="1000" direction="135" />
+</bullet>
+	
+<enemy name="littlepodspawn"
+	   image="@drawable/enemy3_bullet"
+	   speed="100"
+	   delay="500"
+	   hitpoints="1"
+	   lifetime="2000"
+	   bonusScore="10" >
+	<gun type="littlepodspawnBullet1" rate="1000" direction="45" />
+</enemy>
+
+-->
+
+<bullet name="superfighterBullet"
+		image="@drawable/superfighterbullet"
+		acceleration="5"
+		speed="100"
+/>	
+
+<enemy name="momma"
+	   image="@drawable/superfighter"
+	   speed="100"
+	   delay="500"
+	   hitpoints="5"
+	   bonusScore="50" >
+	<gun type="superfighterBullet" rate="200" direction="150" />
+	<gun type="superfighterBullet" rate="200" direction="210" />
+	<parasite type="fighter" offsetx="0" offsety="-40" parentDeathAttack="2" />
+	<parasite type="fighter" offsetx="0" offsety="40" parentDeathAttack="2"/>
+</enemy>
+
+
+<enemy name="blob"
+	   image="@drawable/blob"
+	   speed="40"
+	   delay="500"
+	   hitpoints="99"
+	   bonusScore="500"
+	   boss="yes" >
+	<parasite type="fighter" offsetx="-40" offsety="-80" parentDeathAttack="33" />
+	<parasite type="fighter" offsetx="-40" offsety="80"  parentDeathAttack="33" />
+	<parasite type="fighter" offsetx="-40" offsety="00"  parentDeathAttack="33" />
+</enemy>
+
+
+        <!-- type, pic, accel, speed, delay, hitpoints, lifetime  -->
+        <!-- rate, direction, level -->
+
+        
+<level>
+
+<levelmap width="180" height="20" tiles="@drawable/tiles" tilewidth="48" tileheight="48" startxright="18" startybottom="20"
+
+data1="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,45,0,31,32,58,45,27,27,27,27,26,26,1,1,1,27,1,1,1,27,29,29,29,26,29,29,0,26,1,1,0,27,39,39,39,39,39,10,10,10,0,1,1,1,0,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,"
+data2="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,45,1,1,47,48,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,29,29,29,29,29,0,1,1,1,1,5,27,39,27,27,27,0,1,1,1,1,1,1,1,1,0,39,39,39,39,39,39,39,39,0,0,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,"
+data3="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,45,1,1,1,63,64,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,29,29,29,0,1,1,1,1,1,1,0,39,27,27,0,1,1,1,1,1,1,1,1,1,1,0,0,0,39,39,0,0,0,1,1,0,0,0,39,39,39,39,39,39,39,39,39,39,39,39,39,39,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,"
+data4="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,45,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,29,0,1,1,1,1,1,1,1,5,39,39,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,5,39,39,0,0,0,0,39,39,39,39,39,39,39,39,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,"
+data5="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,45,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,0,39,39,39,39,39,39,39,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,"
+data6="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,45,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,7,8,29,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,39,39,39,39,39,39,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,"
+data7="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,45,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,24,1,1,0,1,1,1,1,1,1,1,1,0,18,21,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,39,39,39,39,39,39,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,"
+data8="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,16,45,27,26,26,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,39,40,8,1,1,0,1,1,1,1,1,1,0,18,19,20,21,0,1,1,1,1,1,1,1,0,9,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,39,39,39,39,39,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,"
+data9="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,45,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,55,56,24,1,1,1,0,1,1,1,1,0,18,19,50,50,20,21,0,1,1,1,1,29,9,39,39,39,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,39,39,39,39,39,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,"
+dataa="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,10,10,10,10,10,10,10,45,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,7,39,50,50,40,1,1,34,1,1,34,1,0,18,19,50,50,50,50,20,21,0,1,1,1,0,39,39,39,39,39,18,0,0,0,0,0,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,39,39,39,39,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,"
+datab="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,37,47,15,10,10,45,42,45,31,32,42,45,42,10,10,10,10,10,10,44,45,27,26,27,26,27,26,27,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,50,50,50,50,50,50,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,50,50,50,50,50,50,50,50,50,50,50,50,50,9,9,9,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,"
+datac="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,63,42,45,27,28,1,37,47,48,1,1,1,42,10,10,10,10,44,45,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,7,39,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,1,1,1,1,1,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,39,39,26,0,1,1,1,1,1,1,1,1,1,1,1,1,1,39,39,1,1,1,1,1,1,1,1,1,1,39,39,39,39,1,1,1,1,1,1,39,39,39,39,39,1,1,1,1,1,39,39,39,"
+datad="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,63,64,1,1,1,30,31,10,10,59,45,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,18,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,39,26,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,39,39,39,1,1,1,1,1,1,1,1,1,39,39,39,39,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,39,39,"
+datae="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,47,10,45,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,7,18,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,39,39,1,1,1,1,39,1,1,1,1,39,39,39,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,39,39,"
+dataf="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,63,27,64,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,18,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,9,9,9,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,39,39,1,1,1,1,39,39,1,1,1,39,39,39,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,39,39,39,"
+datag="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,7,8,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,29,23,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,39,39,1,1,1,39,39,39,1,1,1,39,39,39,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,39,39,39,"
+datah="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,7,8,6,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,21,22,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,39,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,39,1,1,1,1,1,1,1,1,1,39,1,1,1,39,39,39,1,1,1,1,39,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,39,39,"
+datai="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,23,24,1,1,17,35,22,1,1,5,1,17,8,1,1,1,1,1,1,1,7,8,7,39,50,24,1,1,1,1,1,1,1,1,1,1,1,1,1,0,18,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,39,39,1,1,1,1,1,1,1,1,1,1,1,1,1,39,39,39,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,39,39,"
+dataj="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,17,2,3,21,39,40,8,7,18,19,21,22,1,1,17,2,24,1,1,1,1,29,0,0,23,24,23,19,50,40,18,21,22,7,8,17,22,1,1,1,1,1,0,18,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,39,39,39,39,1,1,1,1,1,1,1,1,1,1,1,1,39,39,39,39,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,39,39,39,"
+datak="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,2,19,50,20,55,56,24,23,55,50,20,21,34,35,18,19,40,8,1,1,1,0,18,21,39,40,39,50,50,50,50,50,21,23,24,18,21,0,0,0,1,0,18,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,0,0,0,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39"
+
+
+/>
+
+<levellayer type="image" relativespeed="0.3" start="left" end="2" image="@drawable/cave_background_stars" />
+
+<levellayer type="image" relativespeed="0.6" start="1" end="forever" image="@drawable/cave_background2" />
+
+
+<levellayer type="shapemap" relativespeed="1.0" start="1" end="forever" image="@drawable/fillwall"
+            top="0,0,10,10,20,20,30,10,100,20,200,10,300,5,400,10,500,5,600,40,1000,10,1500,20"
+            bottom="0,400,100,300,150,470,500,300,1000,400,1500,450,2000,400" />
+
+
+<levelsection type="timedstill" time="3000" />
+
+<levelsection type="scrollx" length="45" speed="70" >
+              
+	<enemyInstance type="drone" begin="10" x="800" y="100" direction="180" repeat="4" repeatdelay="40"/>
+
+
+	<enemyInstance type="drone" begin="210" x="800" y="400" direction="180" repeat="4" repeatdelay="40"/>
+              
+              
+    <enemyInstance type="drone" begin="410" x="800" y="100" direction="180" repeat="4" repeatdelay="40"/>
+    
+        <enemyInstance type="drone" begin="510" x="800" y="400" direction="180" repeat="4" repeatdelay="40"/>
+    
+              
+	<enemyInstance type="containedRedPowerup" begin="810" x="790" y="100" direction="180"/>
+	<enemyInstance type="containedRedPowerup" begin="810" x="800" y="200" direction="180"/>
+<!--  	<enemyInstance type="containedRedPowerup" begin="810" x="800" y="300" direction="180" />
+	<enemyInstance type="containedRedPowerup" begin="860" x="800" y="100" direction="180" />
+	<enemyInstance type="containedRedPowerup" begin="860" x="800" y="200" direction="180" />
+	<enemyInstance type="containedRedPowerup" begin="860" x="800" y="300" direction="180" />-->
+	
+	<enemyInstance type="momma" begin="1000" x="800" y="120" repeat="3" repeatdelay="70" direction="180"  spline="700,150,650,90,600,120,550,80,500,400,400,80,300,100,100,50,0,0"/>
+	<enemyInstance type="bat" begin="1080" x="800" y="130" direction="180" />
+	<enemyInstance type="bat" begin="1160" x="800" y="140" direction="135" />
+	<enemyInstance type="momma" begin="1240" x="800" y="150" direction="135"  spline="500,20,400,300,100,100,0,200"/>
+
+	<enemyInstance type="bat" begin="1240" x="600" y="0" direction="90"  movement="homing" />
+	<enemyInstance type="bat" begin="1240" x="600" y="480" direction="270"  movement="homing" />
+	
+	<enemyInstance type="momma" begin="1400" x="800" y="100" direction="180" />
+	<enemyInstance type="momma" begin="1400" x="800" y="380" direction="180" />
+
+	<enemyInstance type="fighter" begin="1560" x="800" y="250" direction="180" />
+	<enemyInstance type="fighter" begin="1640" x="800" y="260" direction="180" />
+	
+ 	<enemyInstance type="fighter" begin="1700" x="800" y="100" direction="180" />
+ 	<enemyInstance type="fighter" begin="1700" x="800" y="160" direction="180" />
+ 	<enemyInstance type="fighter" begin="1700" x="800" y="220" direction="180" />
+ 	<enemyInstance type="fighter" begin="1700" x="800" y="280" direction="180" />
+	
+	<enemyInstance type="bat" begin="1780" x="800" y="100" direction="180" repeat="5" repeatdelay="80" />
+	<enemyInstance type="bat" begin="1780" x="800" y="160" direction="180" repeat="5" repeatdelay="80" />
+	<enemyInstance type="bat" begin="1780" x="800" y="220" direction="180" repeat="5" repeatdelay="80" />
+	<enemyInstance type="bat" begin="1780" x="800" y="280" direction="180" repeat="5" repeatdelay="80" />
+	
+	<!-- 
+	<enemyInstance type="bat" begin="1860" x="800" y="100" direction="180"   movement="homing" />
+	<enemyInstance type="bat" begin="1860" x="800" y="160" direction="180"   movement="homing" />
+	<enemyInstance type="bat" begin="1860" x="800" y="220" direction="180"   movement="homing" />
+	<enemyInstance type="bat" begin="1860" x="800" y="280" direction="180"   movement="homing" />
+	
+	<enemyInstance type="bat" begin="1940" x="800" y="100" direction="180"   movement="homing" />
+	<enemyInstance type="bat" begin="1940" x="800" y="160" direction="180"   movement="homing" />
+	<enemyInstance type="bat" begin="1940" x="800" y="220" direction="180"   movement="homing" />
+	<enemyInstance type="bat" begin="1940" x="800" y="280" direction="180"   movement="homing" />
+	 -->
+	
+	<enemyInstance type="fighter" begin="2100" x="800" y="100" direction="180" />
+	<enemyInstance type="fighter" begin="2100" x="800" y="140" direction="180" />
+	<enemyInstance type="fighter" begin="2100" x="800" y="200" direction="180" />
+	<enemyInstance type="fighter" begin="2100" x="800" y="280" direction="180" />
+	
+ 	<enemyInstance type="pod" begin="2240" x="800" y="100" direction="180" />
+	<enemyInstance type="pod" begin="2260" x="800" y="140" direction="180" />
+	<enemyInstance type="pod" begin="2240" x="800" y="250" direction="180" />
+	<enemyInstance type="pod" begin="2260" x="800" y="260" direction="180" />
+	
+	<!--  
+	<enemyInstance type="littlepodspawn" begin="800" x="2600" y="100" direction="180" />
+	<enemyInstance type="littlepodspawn" begin="800" x="2600" y="200" direction="180" />
+	<enemyInstance type="littlepodspawn" begin="800" x="2600" y="300" direction="180" />
+	-->
+	
+</levelsection>
+
+<levelsection type="scrollxup" length="10" speed="50" />
+
+ 	<enemyInstance type="pod" begin="240" x="800" y="100" direction="180" />
+
+
+<levelsection type="scrollx" length="4" speed="70" />
+
+<levelsection type="bossstill" numbosses="1" >
+	<enemyInstance type="blob" begin="2100" x="800" y="240" spline="700,240,750,240,700,240" />
+</levelsection>
+
+
+<levelsection type="scrollx" length="44" speed="70" />
+
+<levelsection type="scrollxdown" length="10" speed="50" />
+<levelsection type="scrollx" length="60" speed="70" />
+
+<levelsection type="still" >
+	<enemyInstance type="bat" begin="3000" x="800" y="0" direction="210" />
+	<enemyInstance type="bat" begin="3000" x="800" y="0" direction="150" />
+</levelsection>
+ 
+ 
+</level>
+     
+<!--
+      
+       TODO: Repeating enemyInstances.....
+       for(int i=0; i<100; i++)
+        {
+        	mWallLayout.addEnemyResourcetoEnd(3000+(i*500), 4800, 480, 0, 210); //begin, x, y, id, direction
+        	mWallLayout.addEnemyResourcetoEnd(3000+(i*500), 4800, 0, 0, 150);
+        	
+        	if(i>20)
+        	{
+        		mWallLayout.addEnemyResourcetoEnd(3000+(i*500), 4600, 480, 0, 330);
+        		mWallLayout.addEnemyResourcetoEnd(3000+(i*500), 4600, 0, 0, 30);
+        	}
+        }
+        
+  -->
+  
+</entitytypes>
+
