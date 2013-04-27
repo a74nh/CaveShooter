@@ -35,6 +35,16 @@
 		  size="26"
 		  color="0xff0000ff" />	
 
+<!-- 
+<hudentry type="debug"
+		  x="20"
+		  y="400"
+		  speed="0"
+		  font="segoesc.ttf"
+		  size="26"
+		  color="0xff0000ff" />	
+ -->
+ 
 <playerbullet name="playerBulletRockets"
 		      image="@drawable/playerbullet"
 			  acceleration="300"
@@ -88,14 +98,14 @@
 <bullet name="batpoo"
 		image="@drawable/batbullet"
 		acceleration="0"
-		speed="50"
-/>	
+		speed="50" >
+</bullet>
 
 <explosion name="batExplosion"
 	       image="@drawable/batdead"
 		   acceleration="300"
-		   speed="-200"
-/>
+		   speed="-200" >
+</explosion>
 
 
 <enemy name="bat"
@@ -271,31 +281,28 @@ datak="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,2,19,50,20,55,56,24,23,55,50,20,21,34,3
 
 />
 
+<!-- screen = 480×800  -->
+
 <levellayer type="image" relativespeed="0.3" start="left" end="2" image="@drawable/cave_background_stars" />
 
-<levellayer type="image" relativespeed="0.6" start="1" end="forever" image="@drawable/cave_background2" />
+<levellayer type="image" relativespeed="0.6" start="1" end="13" image="@drawable/cave_background2" />
 
+<levellayer type="image" relativespeed="0.3" start="13" end="forever" image="@drawable/cave_background_stars" />
 
 <levellayer type="shapemap" relativespeed="1.0" start="1" end="forever" image="@drawable/fillwall"
-            top="0,0,10,10,20,20,30,10,100,20,200,10,300,5,400,10,500,5,600,40,1000,10,1500,20"
-            bottom="0,400,100,300,150,470,500,300,1000,400,1500,450,2000,400" />
+            top="0,0,10,10,20,20,30,10,100,20,200,10,300,5,400,10,500,5,600,40,1000,10,1500,20,2000,-500"
+            bottom="0,400,100,300,150,470,500,300,1000,400,1500,450,2000,400,2600,-200" />
 
 
-<levelsection type="timedstill" time="3000" />
+<levelsection type="timedstill" time="3000" /> <!-- 1 -->
 
-<levelsection type="scrollx" length="45" speed="70" >
+<levelsection type="scrollx" length="45" speed="70" > <!-- length=2160 -->  <!-- 2 -->
               
 	<enemyInstance type="drone" begin="10" x="800" y="100" direction="180" repeat="4" repeatdelay="40"/>
-
-
-	<enemyInstance type="drone" begin="210" x="800" y="400" direction="180" repeat="4" repeatdelay="40"/>
-              
-              
+	<enemyInstance type="drone" begin="210" x="800" y="400" direction="180" repeat="4" repeatdelay="40"/>              
     <enemyInstance type="drone" begin="410" x="800" y="100" direction="180" repeat="4" repeatdelay="40"/>
+    <enemyInstance type="drone" begin="510" x="800" y="400" direction="180" repeat="4" repeatdelay="40"/>
     
-        <enemyInstance type="drone" begin="510" x="800" y="400" direction="180" repeat="4" repeatdelay="40"/>
-    
-              
 	<enemyInstance type="containedRedPowerup" begin="810" x="790" y="100" direction="180"/>
 	<enemyInstance type="containedRedPowerup" begin="810" x="800" y="200" direction="180"/>
 <!--  	<enemyInstance type="containedRedPowerup" begin="810" x="800" y="300" direction="180" />
@@ -303,6 +310,72 @@ datak="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,2,19,50,20,55,56,24,23,55,50,20,21,34,3
 	<enemyInstance type="containedRedPowerup" begin="860" x="800" y="200" direction="180" />
 	<enemyInstance type="containedRedPowerup" begin="860" x="800" y="300" direction="180" />-->
 	
+	<enemyInstance type="momma" begin="1000" x="800" y="120" repeat="3" repeatdelay="70" direction="180"  spline="700,150,650,90,600,120,550,80,500,400,400,80,300,100,100,50,0,0"/>
+
+	<enemyInstance type="bat" begin="1240" x="600" y="0" direction="90"  movement="homing" />
+	<enemyInstance type="bat" begin="1240" x="600" y="480" direction="270"  movement="homing" />
+	
+	<enemyInstance type="momma" begin="1400" x="800" y="380" direction="180" />
+
+	<enemyInstance type="fighter" begin="1560" x="800" y="250" direction="180" />
+	<enemyInstance type="fighter" begin="1640" x="800" y="260" direction="180" />
+	
+	
+	<enemyInstance type="bat" begin="1780" x="800" y="100" direction="180" repeat="5" repeatdelay="80" />
+	<enemyInstance type="bat" begin="1780" x="800" y="160" direction="180" repeat="5" repeatdelay="80" />
+	<enemyInstance type="bat" begin="1780" x="800" y="220" direction="180" repeat="5" repeatdelay="80" />
+	<enemyInstance type="bat" begin="1780" x="800" y="280" direction="180" repeat="5" repeatdelay="80" />
+	
+	<!-- 
+	<enemyInstance type="bat" begin="1860" x="800" y="100" direction="180"   movement="homing" />
+	<enemyInstance type="bat" begin="1860" x="800" y="160" direction="180"   movement="homing" />
+	<enemyInstance type="bat" begin="1860" x="800" y="220" direction="180"   movement="homing" />
+	<enemyInstance type="bat" begin="1860" x="800" y="280" direction="180"   movement="homing" />
+	
+	<enemyInstance type="bat" begin="1940" x="800" y="100" direction="180"   movement="homing" />
+	<enemyInstance type="bat" begin="1940" x="800" y="160" direction="180"   movement="homing" />
+	<enemyInstance type="bat" begin="1940" x="800" y="220" direction="180"   movement="homing" />
+	<enemyInstance type="bat" begin="1940" x="800" y="280" direction="180"   movement="homing" />
+	 -->
+	
+	<enemyInstance type="fighter" begin="2100" x="800" y="100" direction="180" />
+	<enemyInstance type="fighter" begin="2100" x="800" y="140" direction="180" />
+	<enemyInstance type="fighter" begin="2100" x="800" y="200" direction="180" />
+	<enemyInstance type="fighter" begin="2100" x="800" y="280" direction="180" />
+	
+ 	<enemyInstance type="pod" begin="2240" x="800" y="100" direction="180" />
+	<enemyInstance type="pod" begin="2260" x="800" y="140" direction="180" />
+	<enemyInstance type="pod" begin="2240" x="800" y="250" direction="180" />
+	<enemyInstance type="pod" begin="2260" x="800" y="260" direction="180" />
+	
+	<!--  
+	<enemyInstance type="littlepodspawn" begin="800" x="2600" y="100" direction="180" />
+	<enemyInstance type="littlepodspawn" begin="800" x="2600" y="200" direction="180" />
+	<enemyInstance type="littlepodspawn" begin="800" x="2600" y="300" direction="180" />
+	-->
+	
+</levelsection>
+
+<levelsection type="scrollxup" length="20" speed="50" /> <!-- 3 -->
+
+ 	<enemyInstance type="pod" begin="240" x="800" y="100" direction="180" />
+
+
+<levelsection type="scrollx" length="4" speed="70" />  <!-- 4 -->
+<levelsection type="scrollx" length="4" speed="50" />  <!-- 5 -->
+<levelsection type="scrollx" length="1" speed="30" />  <!-- 6 -->
+<levelsection type="scrollx" length="1" speed="15" />  <!-- 7 -->
+
+<levelsection type="bossstill" numbosses="1" >
+	<enemyInstance type="blob" begin="2100" x="800" y="240" spline="700,240,750,240,700,240" />
+</levelsection>
+
+<levelsection type="scrollx" length="1" speed="50" />  <!-- 8 -->
+<levelsection type="scrollx" length="2" speed="70" />  <!-- 9 -->
+<levelsection type="scrollx" length="2" speed="90" />  <!-- 10 -->
+
+<levelsection type="scrollx" length="40" speed="150" />   <!-- 11 -->
+
 	<enemyInstance type="momma" begin="1000" x="800" y="120" repeat="3" repeatdelay="70" direction="180"  spline="700,150,650,90,600,120,550,80,500,400,400,80,300,100,100,50,0,0"/>
 	<enemyInstance type="bat" begin="1080" x="800" y="130" direction="180" />
 	<enemyInstance type="bat" begin="1160" x="800" y="140" direction="135" />
@@ -348,33 +421,14 @@ datak="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,2,19,50,20,55,56,24,23,55,50,20,21,34,3
 	<enemyInstance type="pod" begin="2260" x="800" y="140" direction="180" />
 	<enemyInstance type="pod" begin="2240" x="800" y="250" direction="180" />
 	<enemyInstance type="pod" begin="2260" x="800" y="260" direction="180" />
-	
-	<!--  
-	<enemyInstance type="littlepodspawn" begin="800" x="2600" y="100" direction="180" />
-	<enemyInstance type="littlepodspawn" begin="800" x="2600" y="200" direction="180" />
-	<enemyInstance type="littlepodspawn" begin="800" x="2600" y="300" direction="180" />
-	-->
-	
-</levelsection>
-
-<levelsection type="scrollxup" length="10" speed="50" />
-
- 	<enemyInstance type="pod" begin="240" x="800" y="100" direction="180" />
 
 
-<levelsection type="scrollx" length="4" speed="70" />
+<levelsection type="scrollxdown" length="30" speed="150" />   <!-- 12 -->
 
-<levelsection type="bossstill" numbosses="1" >
-	<enemyInstance type="blob" begin="2100" x="800" y="240" spline="700,240,750,240,700,240" />
-</levelsection>
+<levelsection type="scrollx" length="30" speed="70" />    <!-- 13 -->
 
 
-<levelsection type="scrollx" length="44" speed="70" />
-
-<levelsection type="scrollxdown" length="10" speed="50" />
-<levelsection type="scrollx" length="60" speed="70" />
-
-<levelsection type="still" >
+<levelsection type="still" >     <!-- 14 -->
 	<enemyInstance type="bat" begin="3000" x="800" y="0" direction="210" />
 	<enemyInstance type="bat" begin="3000" x="800" y="0" direction="150" />
 </levelsection>

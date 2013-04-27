@@ -96,9 +96,10 @@ public class LevelLayerShapeMap extends LevelLayerImage {
     	
     	if (isNotActive()) return;
 
-
     	mPath.reset();
     	    	
+    	//draw the top line
+
     	mPath.moveTo((float)(mTopCoords.get(mTopStartCoord).x-mLeftPos), -10);
     	
     	for(int i=mTopStartCoord; i<=mTopEndCoord; i++) {
@@ -109,6 +110,8 @@ public class LevelLayerShapeMap extends LevelLayerImage {
     	mPath.close();
 
     	
+    	//draw the bottom line
+
     	mPath.moveTo((float)(mBottomCoords.get(mBottomStartCoord).x-mLeftPos), canvas.getHeight()+10);
     	
     	for(int i=mBottomStartCoord; i<=mBottomEndCoord; i++) {

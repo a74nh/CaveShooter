@@ -1,6 +1,7 @@
 package com.sleepware.ShooterEngine;
 
 
+
 public class MovementType {
 
     public static final int MOVEMENT_STRAIGHT = 0;

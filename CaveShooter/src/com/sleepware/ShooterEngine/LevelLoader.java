@@ -3,7 +3,6 @@ package com.sleepware.ShooterEngine;
 import org.xmlpull.v1.XmlPullParser;
 
 import com.badlogic.gdx.math.Vector2;
-import com.sleepware.caveshooter.R;
 
 import android.content.res.XmlResourceParser;
 import android.graphics.BitmapFactory;
@@ -511,6 +510,9 @@ public class LevelLoader {
 	        	
 				} else if (parser.getAttributeValue(i).equals("lives")) {
 	        		type = HudEntryValue.HUD_ENTRY_LIVES;
+	        		
+				} else if (parser.getAttributeValue(i).equals("debug")) {
+	        		type = HudEntryValue.HUD_ENTRY_DEBUG;
 	        		
 				} 
 	        	

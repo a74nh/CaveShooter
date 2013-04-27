@@ -1,6 +1,7 @@
 package com.sleepware.ShooterEngine;
 
 
+
 public class EnemyHoming extends Enemy{
 
 	MovementTypeHoming mMovementType;

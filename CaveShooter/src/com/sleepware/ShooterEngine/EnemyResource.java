@@ -1,5 +1,6 @@
 package com.sleepware.ShooterEngine;
 
+
 public class EnemyResource {
 	
 	public EntityType mEnemyType; //which EnemyType

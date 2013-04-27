@@ -1,5 +1,6 @@
 package com.sleepware.ShooterEngine;
 
+
 public class EnemyParasiteType {
 
 	ShooterEngineContext mShooterEngineContext;

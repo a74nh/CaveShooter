@@ -25,9 +25,7 @@
     <string name="mode_ready">Cave Shooter\n&lt;Press Menu&gt;</string>
 	<string name="mode_pause">Paused\nPress Up To Resume</string> 
 	
-	<string name="message_stopped">Stopped</string> 	
-
-    <string name="lunar_layout_text_text"></string>
+	<string name="message_stopped">Stopped</string>
     <string name="framesPerSec">0</string>
     
 </resources>

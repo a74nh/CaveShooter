@@ -1,6 +1,7 @@
 package com.sleepware.ShooterEngine;
 
 
+
 public class EnemyGunType {
 
 	private EntityType mEnemyType;

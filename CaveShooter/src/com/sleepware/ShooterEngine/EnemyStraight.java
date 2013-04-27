@@ -1,6 +1,7 @@
 package com.sleepware.ShooterEngine;
 
 
+
 public class EnemyStraight extends Enemy {
 	
 	MovementTypeStraight mMovementType;

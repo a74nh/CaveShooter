@@ -54,14 +54,7 @@ public class CaveShooterActivity extends Activity {
             case MENU_START:
               //  mShooterEngineThread.doStart();
                 return true;
-           /* case MENU_STOP:
-                mLunarThread.setState(CaveShooterThread.STATE_LOSE,
-                        getText(R.string.message_stopped));
-                return true;
-            case MENU_PAUSE:
-                mLunarThread.pause();
-                return true;
-            */
+
             case MENU_RESUME:
             	mShooterEngineView.unpause();
                 return true;
@@ -88,9 +81,9 @@ public class CaveShooterActivity extends Activity {
                              WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
         // tell system to use the layout defined in our XML file
-        setContentView(R.layout.lunar_layout);
+        setContentView(R.layout.caveshooter_layout);
 
-        // get handles to the LunarView from XML, and its LunarThread
+        // get handles to the ShooterEngineView from XML
         mShooterEngineView = (ShooterEngineView) findViewById(R.id.caveShooter);
 
         mShooterEngineView.allowUserControl(true);

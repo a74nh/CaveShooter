@@ -21,6 +21,7 @@ public class ShooterEngineContext {
 	public int mScore;
 	public double mFPS;
 	public int mLives;
+	public int mDebug1;
 
 	
 	ShooterEngineContext(Context context) {
@@ -40,7 +41,9 @@ public class ShooterEngineContext {
 
 		mScore=0;
 		mFPS=0;
-		mLives=3;  ///TODO:  NOOO!!!! Set from xml!!!!
+		mLives=9;  ///TODO:  NOOO!!!! Set from xml!!!!
+		
+		mDebug1=0;
 	}
 	
 	public void clear() {

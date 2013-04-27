@@ -10,8 +10,8 @@ public class LevelLayer {
 	private int mStart;
 	private int mFinish;
 	
-	protected double mXPosition=0; //Progress through level. Equal to right side of screen
-	protected double mYPosition=0; //Progress through level. Equal to bottom of screen
+	protected double mXPosition=0; //Progress through level layer. Equal to right side of screen
+	protected double mYPosition=0; //Progress through level layer. Equal to bottom of screen
 
 	protected double mLeftPos;
 	protected double mTopPos;

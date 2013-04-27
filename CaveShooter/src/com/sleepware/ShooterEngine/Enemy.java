@@ -1,6 +1,7 @@
 package com.sleepware.ShooterEngine;
 
 
+
 public class Enemy extends Entity {
 	
 	

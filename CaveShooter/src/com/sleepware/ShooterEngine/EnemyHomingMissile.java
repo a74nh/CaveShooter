@@ -1,5 +1,6 @@
 package com.sleepware.ShooterEngine;
 
+
 public class EnemyHomingMissile extends Enemy{
 
 	MovementTypeHomingMissile mMovementType;

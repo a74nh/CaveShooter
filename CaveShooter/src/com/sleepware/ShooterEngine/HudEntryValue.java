@@ -13,6 +13,7 @@ public class HudEntryValue extends HudEntry {
 	public static final int HUD_ENTRY_LEVEL_POS =2;
 	public static final int HUD_ENTRY_FPS =3;
 	public static final int HUD_ENTRY_LIVES =4;
+	public static final int HUD_ENTRY_DEBUG = 5;
 	
 	private int mType;
 	private int mSpeed;
@@ -58,6 +59,10 @@ public class HudEntryValue extends HudEntry {
 		case HUD_ENTRY_LIVES:
 	        output = String.format("%1d", (int)mDisplayedValue );
 	        break;
+	        
+		case HUD_ENTRY_DEBUG:
+	        output = String.format("%d", (int)mDisplayedValue );
+	        break;
 		}
 
 		canvas.drawText(output, mPosition.x, mPosition.y, mPaint);
@@ -84,6 +89,10 @@ public class HudEntryValue extends HudEntry {
 	    
 		case HUD_ENTRY_LIVES:
 			currentValue = mShooterEngineContext.mLives;
+	        break;
+	        
+		case HUD_ENTRY_DEBUG:
+			currentValue = mShooterEngineContext.mDebug1;
 	        break;
 		}
     			

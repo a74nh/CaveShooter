@@ -1,5 +1,6 @@
 package com.sleepware.ShooterEngine;
 
+
 public class EnemyAttached extends Enemy {
 	
 	private int mOffsetx;

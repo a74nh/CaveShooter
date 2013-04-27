@@ -1,6 +1,7 @@
 package com.sleepware.ShooterEngine;
 
 
+
 public class MovementTypeStraight extends MovementType {
 
 	public double mAccelDirectionRadians; //angle (recalculated into radians)
