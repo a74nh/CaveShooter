@@ -5,7 +5,6 @@ import org.xmlpull.v1.XmlPullParser;
 import com.badlogic.gdx.math.Vector2;
 
 import android.content.res.XmlResourceParser;
-import android.graphics.BitmapFactory;
 
 public class LevelLoader {
 

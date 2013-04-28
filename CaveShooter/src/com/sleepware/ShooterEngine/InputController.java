@@ -52,7 +52,7 @@ public class InputController {
      * Handles a key-down event.
      */
     public boolean doKeyDown(int keyCode, KeyEvent msg) {
-            return false;
+        return false;
     }
 
     /**
@@ -121,5 +121,9 @@ public class InputController {
 		return mDestination;
 	}
 	
+	
+	boolean getIsTouched() {
+		return mTouched;
+	}
 	
 }

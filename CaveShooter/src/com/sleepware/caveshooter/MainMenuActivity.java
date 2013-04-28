@@ -27,12 +27,26 @@ public class MainMenuActivity extends Activity {
         }
     };
     
+    private View.OnClickListener sDebugButtonListener = new View.OnClickListener() {
+        public void onClick(View v) {
+        	
+   		 mShooterEngineView.shutdown();
+		 
+   		 Intent i = new Intent(getBaseContext(), CaveShooterActivity.class);
+   		 i.setType("text/plain");
+   		 i.putExtra(android.content.Intent.EXTRA_TEXT, "debug");
+   		 startActivity(i);
+        }
+    };
+    
     private void assignHandlers() {
         //Set listeners for the buttons
         
         mNewGameButton = findViewById(R.id.button1);
         mNewGameButton.setOnClickListener(sNewGameButtonListener);
-
+        
+        mNewGameButton = findViewById(R.id.button3);
+        mNewGameButton.setOnClickListener(sDebugButtonListener);
     }
     
     

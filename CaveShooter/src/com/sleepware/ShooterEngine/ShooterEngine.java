@@ -37,6 +37,10 @@ public class ShooterEngine extends Thread {
 	private int mCanvasHeight;
     private int mCanvasWidth;
 	
+    private boolean mDebugMode;
+    
+    private long mEngineLocalNow; //Fake now of the engine. Equal to start time + amount of time running whilst not paused
+    
     
     public ShooterEngine(SurfaceHolder surfaceHolder, Context context, Handler handler) {
     	
@@ -50,6 +54,8 @@ public class ShooterEngine extends Thread {
     	mStateSurfaceCreated =false;
     	mStatePaused =false;
     	mExitRequested=false;
+    	
+    	mDebugMode=false;
 	}
 	
     
@@ -102,8 +108,7 @@ public class ShooterEngine extends Thread {
                 c = mSurfaceHolder.lockCanvas(null);
                 synchronized (mSurfaceHolder) {
                     
-                	long now = System.currentTimeMillis();
-                    updatePhysics(now);
+                    updatePhysics();
                     doDraw(c);
                 }
             } finally {
@@ -193,7 +198,7 @@ public class ShooterEngine extends Thread {
         		mShooterEngineContext.mLevelSections.doStart(now, mCanvasWidth, mCanvasHeight);
         	    
         	    // pick a convenient initial location
-        	    if(mShooterEngineContext.mPlayerType!=null) {
+        	    if(mShooterEngineContext.mPlayerType!=null && !mDebugMode) {
         	    	mShooterEngineContext.setPlayer(mShooterEngineContext.mPlayerType.spawn(mShooterEngineContext, now, 50, mCanvasHeight / 2));
         	    }
         	    
@@ -201,6 +206,7 @@ public class ShooterEngine extends Thread {
         	    mShooterEngineContext.mEnemies.doStart();
         	    
                 mLastTime = now + 100;
+                mEngineLocalNow = now + 100;
                 
             }
         } finally {
@@ -234,54 +240,56 @@ public class ShooterEngine extends Thread {
 	
 	
 	
-    private void updatePhysics(long now) {
+    private void updatePhysics() {
 
+    	long now = System.currentTimeMillis();
+    	
+    	if(mStatePaused) return;
+    	
         // Do nothing if mLastTime is in the future.
         // This allows the game-start to delay the start of the physics
         // by 100ms or whatever.
         if (mLastTime > now) return;
         
+        //If debug mode and pressing down then nullify any time elapsed
+        if(mDebugMode) {
+        	if (!mShooterEngineContext.mInputController.getIsTouched()) {
+        		mLastTime=now;
+        		return;
+        	}
+        }
+        
+        //Use real now to get elapsed time
         long elapsed = now - mLastTime;
 
-        mShooterEngineContext.mFPS = (1000.0 / (double)elapsed);
-        
-    	            /*
-            //String output = myFormatter.format((1000.0 / (double)elapsed));  //fps
-            //String output = myFormatter.format((mBackground.getXwallPos()));
-            //String output = myFormatter.format((mY));
-            //String output = myFormatter.format((mBackground.mWallImage.getPixel((int)(mX+mBackground.getXwallPos()), (int)mY)));
-            Message msg = mHandler.obtainMessage();
-            Bundle b = new Bundle();
-            b.putInt("type", M_FPS);
-            b.putString("text", output);
-            msg.setData(b);
-            mHandler.sendMessage(msg);
-            mlastTimeFPSUpdated=now;*/
+        //then set local now incremented by elapsed
+        mEngineLocalNow += elapsed;
 
-            		
+        mShooterEngineContext.mFPS = (1000.0 / (double)elapsed);
+                    		
 		//Move everything
 		
-        mShooterEngineContext.mLevelSections.updatePhysics(now, elapsed, mCanvasWidth, mCanvasHeight);
+        mShooterEngineContext.mLevelSections.updatePhysics(mEngineLocalNow, elapsed, mCanvasWidth, mCanvasHeight);
 		
         Player player = mShooterEngineContext.getPlayer();
-		if(player!=null) player.updatePhysics(now, elapsed);
+		if(player!=null) player.updatePhysics(mEngineLocalNow, elapsed);
         
-		mShooterEngineContext.mEnemies.updatePhysics(now, elapsed, mCanvasWidth, mCanvasHeight);
+		mShooterEngineContext.mEnemies.updatePhysics(mEngineLocalNow, elapsed, mCanvasWidth, mCanvasHeight);
                     
-		mShooterEngineContext.mBullets.updatePhysics(now, elapsed, mCanvasWidth, mCanvasHeight);
+		mShooterEngineContext.mBullets.updatePhysics(mEngineLocalNow, elapsed, mCanvasWidth, mCanvasHeight);
 
         
         //Check Collisions
 		player = mShooterEngineContext.getPlayer();
-    	if(player!=null && player.doBackgroundCollisions(now)) {
-    		playerDied(now);
+    	if(player!=null && player.doBackgroundCollisions(mEngineLocalNow)) {
+    		playerDied(mEngineLocalNow);
         }
     	
-    	mShooterEngineContext.mBullets.doCollisions(mShooterEngineContext, now);
+    	mShooterEngineContext.mBullets.doCollisions(mShooterEngineContext, mEngineLocalNow);
 
     	player = mShooterEngineContext.getPlayer();
-    	if(player!=null && player.doCollisions(now)) {
-    		playerDied(now);
+    	if(player!=null && player.doCollisions(mEngineLocalNow)) {
+    		playerDied(mEngineLocalNow);
         }
         
         //The list may be full of blanks by now
@@ -290,7 +298,7 @@ public class ShooterEngine extends Thread {
         
     	
     	//Last because could house all sorts of state
-    	mShooterEngineContext.mHud.updatePhysics(now, elapsed, mCanvasWidth, mCanvasHeight);
+    	mShooterEngineContext.mHud.updatePhysics(mEngineLocalNow, elapsed, mCanvasWidth, mCanvasHeight);
 
         mLastTime = now;
     }
@@ -372,4 +380,7 @@ public class ShooterEngine extends Thread {
         }
     }
     
+    public void setDebugMode() {
+    	mDebugMode=true;
+    }
 }

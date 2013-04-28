@@ -86,6 +86,17 @@ public class CaveShooterActivity extends Activity {
         // get handles to the ShooterEngineView from XML
         mShooterEngineView = (ShooterEngineView) findViewById(R.id.caveShooter);
 
+        
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+        	// Get data via the key
+        	String value1 = extras.getString(android.content.Intent.EXTRA_TEXT);
+        	if (value1.equals("debug")) {
+        		mShooterEngineView.setDebugMode();
+        	} 
+        }
+        
+        
         mShooterEngineView.allowUserControl(true);
 
         if (savedInstanceState == null) {

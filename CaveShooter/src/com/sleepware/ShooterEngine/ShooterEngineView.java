@@ -20,6 +20,8 @@ public class ShooterEngineView extends SurfaceView implements SurfaceHolder.Call
     private boolean mUserControlable;
     private int mLevel;
     
+    private static Handler mHandler;
+    
     public ShooterEngineView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -37,19 +39,18 @@ public class ShooterEngineView extends SurfaceView implements SurfaceHolder.Call
     	thread.loadLevel(level);
     }
     
+    static class myHandler extends Handler {
+        @Override
+        public void handleMessage(Message m) {
+        	int type = m.getData().getInt("type");
+        	if(ShooterEngine.MESSAGE_GAMEOVER==type) {
+        		//TODO: Game over man! Game over!
+        	}
+        }
+    }    
     
     private void createThread() {
-        // create thread only; it's started in surfaceCreated()
-        thread = new ShooterEngine(getHolder(), getContext(), new Handler() {
-            @Override
-            public void handleMessage(Message m) {
-            	
-            	int type = m.getData().getInt("type");
-            	if(ShooterEngine.MESSAGE_GAMEOVER==type) {
-            		//TODO: Game over man! Game over!
-            	}
-            }
-        });
+        thread = new ShooterEngine(getHolder(), getContext(), new myHandler() );
         thread.start();
     }
     
@@ -149,6 +150,10 @@ public class ShooterEngineView extends SurfaceView implements SurfaceHolder.Call
     
     public void restoreState(Bundle savedState) {
     	thread.restoreState(savedState);
+    }
+    
+    public void setDebugMode() {
+    	thread.setDebugMode();
     }
 
 }

@@ -59,6 +59,7 @@ public class ShooterEngineContext {
 		mHud=null;
 		mPlayer=null;
 		mPlayerType=null;
+		mBitmapWarehouse = null;
 		
 		mInputController=null;
 		mStateRunning=false;
