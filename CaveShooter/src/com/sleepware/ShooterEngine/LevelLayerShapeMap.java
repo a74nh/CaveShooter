@@ -23,12 +23,12 @@ public class LevelLayerShapeMap extends LevelLayerImage {
 	private Path mPath;
 	private Paint mPaint;
 
-	public LevelLayerShapeMap(ShooterEngineContext shooterEngineContext, double relativeSpeed, int start, int finish, int imageid, String topCoords, String bottomCoords)
+	public LevelLayerShapeMap(ShooterEngineContext shooterEngineContext, double relativeSpeed, int start, int finish, int imageid, String topCoordsx, String bottomCoordsx, String topCoordsy, String bottomCoordsy)
 	{
 		super(shooterEngineContext, relativeSpeed, start, finish, imageid);
 		
-		mTopCoords = splitString(topCoords);
-		mBottomCoords = splitString(bottomCoords);
+		mTopCoords = splitString(topCoordsx,topCoordsy);
+		mBottomCoords = splitString(bottomCoordsx,bottomCoordsy);
 		
     	mPath = new Path();
     	
@@ -38,14 +38,19 @@ public class LevelLayerShapeMap extends LevelLayerImage {
     	mPaint.setStrokeWidth(5);
     	mPaint.setAntiAlias(true);
 	}	
-		
-	private ArrayList<Vector2> splitString(String coordString) {
 	
-		String temp[] = coordString.split(",");
-		ArrayList<Vector2> retArray  = new ArrayList<Vector2>((temp.length+1)/2);
+	
+	private ArrayList<Vector2> splitString(String coordStringx, String coordStringy) {
+	
+		String tempx[] = coordStringx.split(",");
+		String tempy[] = coordStringy.split(",");
+		
+		assert(tempx.length==tempy.length);
+		
+		ArrayList<Vector2> retArray  = new ArrayList<Vector2>(tempx.length);
 
-		for(int i=0; i<temp.length; i=i+2 ) {
-			Vector2 vector = new Vector2(Integer.parseInt(temp[i]), Integer.parseInt(temp[i+1]));
+		for(int i=0; i<tempx.length; i++ ) {
+			Vector2 vector = new Vector2(Integer.parseInt(tempx[i].trim()), Integer.parseInt(tempy[i].trim()));
 			retArray.add(vector);
 		}
 		return retArray;

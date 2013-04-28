@@ -25,7 +25,7 @@ public class LevelLayerImage extends LevelLayer {
     	if (isNotActive()) return;
 
     	int xOffset = ((int)mXPosition) % mImage.getWidth();
-    	int yOffset = Math.abs((int)mYPosition) % mImage.getHeight();
+    	int yOffset = ((int)mYPosition) % mImage.getHeight();
     	
     	//mShooterEngineContext.mDebug1 =  yOffset;
     	    	

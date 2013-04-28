@@ -11,9 +11,10 @@ public class HudEntryValue extends HudEntry {
 	
 	public static final int HUD_ENTRY_SCORE = 1;
 	public static final int HUD_ENTRY_LEVEL_POS =2;
-	public static final int HUD_ENTRY_FPS =3;
-	public static final int HUD_ENTRY_LIVES =4;
-	public static final int HUD_ENTRY_DEBUG = 5;
+	public static final int HUD_ENTRY_LEVEL_SECTION =3;
+	public static final int HUD_ENTRY_FPS =4;
+	public static final int HUD_ENTRY_LIVES =5;
+	public static final int HUD_ENTRY_DEBUG = 6;
 	
 	private int mType;
 	private int mSpeed;
@@ -52,6 +53,10 @@ public class HudEntryValue extends HudEntry {
 	        output = String.format("%d", (int)mDisplayedValue );
 	        break;
 	        
+		case HUD_ENTRY_LEVEL_SECTION:
+	        output = String.format("%d", (int)mDisplayedValue );
+	        break;
+	        
 		case HUD_ENTRY_FPS:
 	        output = String.format("%2d", (int)mDisplayedValue );
 	        break;
@@ -82,6 +87,10 @@ public class HudEntryValue extends HudEntry {
 		case HUD_ENTRY_LEVEL_POS:
 			currentValue = mShooterEngineContext.mLevelSections.mCurrentPositionInLevel;
 	        break;
+	        
+		case HUD_ENTRY_LEVEL_SECTION:
+			currentValue = mShooterEngineContext.mLevelSections.mLevelSectionCurrent;
+	        break;	 
 	        
 		case HUD_ENTRY_FPS:
 			currentValue = mShooterEngineContext.mFPS;

@@ -18,7 +18,7 @@ public class LevelSections {
 	//Level Sections
 	
     private ArrayList<LevelSection> mSectionList;
-    private int mLevelSectionCurrent;
+    protected int mLevelSectionCurrent;
     
     private double mLastTimeJumpedSection;
 

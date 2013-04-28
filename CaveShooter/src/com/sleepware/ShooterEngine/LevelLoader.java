@@ -372,8 +372,10 @@ public class LevelLoader {
 		int start = 0;
 		int end =0;
 		int image = 0;
-		String top= null;
-		String bottom= null;
+		String topx= null;
+		String bottomx= null;
+		String topy= null;
+		String bottomy= null;
 		
 		for(int i=0; i < parser.getAttributeCount(); i++) { 
 			
@@ -412,12 +414,17 @@ public class LevelLoader {
 				int val = parser.getAttributeResourceValue(i, -1);
 				if(val!=-1) image = val;
 				
-	        } else if (parser.getAttributeName(i).equals("top")) {
-	        	top = parser.getAttributeValue(i);
+	        } else if (parser.getAttributeName(i).equals("topx")) {
+	        	topx = parser.getAttributeValue(i);
 	        	
-	        } else if (parser.getAttributeName(i).equals("bottom")) {
-	        	bottom = parser.getAttributeValue(i);
-						
+	        } else if (parser.getAttributeName(i).equals("bottomx")) {
+	        	bottomx = parser.getAttributeValue(i);
+	        	
+	        } else if (parser.getAttributeName(i).equals("topy")) {
+	        	topy = parser.getAttributeValue(i);
+	        	
+	        } else if (parser.getAttributeName(i).equals("bottomy")) {
+	        	bottomy = parser.getAttributeValue(i);			
 	        }
 	        	
 		}
@@ -433,7 +440,7 @@ public class LevelLoader {
 		case LayerTypeShapeMap:
 			
 			return new LevelLayerShapeMap(shooterEngineContext, relativespeed, start, end, image,
-                    					  top, bottom);
+                    					  topx, bottomx, topy, bottomy);
 		}
 		
 		return null;
@@ -505,6 +512,9 @@ public class LevelLoader {
 				} else if (parser.getAttributeValue(i).equals("levelposition")) {
 	        		type = HudEntryValue.HUD_ENTRY_LEVEL_POS;
 	        		
+				} else if (parser.getAttributeValue(i).equals("levelsection")) {
+	        		type = HudEntryValue.HUD_ENTRY_LEVEL_SECTION;
+	        			
 				} else if (parser.getAttributeValue(i).equals("fps")) {
 	        		type = HudEntryValue.HUD_ENTRY_FPS;
 	        	

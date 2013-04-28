@@ -18,6 +18,14 @@
 		  size="18"
 		  color="0xff00ffff" />	
 
+<hudentry type="levelsection"
+		  x="20"
+		  y="60"
+		  speed="0"
+		  font="segoesc.ttf"
+		  size="18"
+		  color="0xff00ffff" />
+
 <hudentry type="fps"
 		  x="150"
 		  y="20"
@@ -289,14 +297,16 @@ datak="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,2,19,50,20,55,56,24,23,55,50,20,21,34,3
 
 <levellayer type="image" relativespeed="0.3" start="13" end="forever" image="@drawable/cave_background_stars" />
 
-<levellayer type="shapemap" relativespeed="1.0" start="1" end="forever" image="@drawable/fillwall"
-            top="0,0,10,10,20,20,30,10,100,20,200,10,300,5,400,10,500,5,600,40,1000,10,1500,20,2000,-500"
-            bottom="0,400,100,300,150,470,500,300,1000,400,1500,450,2000,400,2600,-200" />
+<levellayer type="shapemap" relativespeed="1.0" start="1" end="7" image="@drawable/fillwall"
+            topx="0,10,20,30,100,200,300,400,500,600,1000,1500,2000, 2020, 2040, 2060, 2080, 2100, 2120, 2140, 2160"
+            topy="0,10,20,10, 20, 10,  5, 10,  5, 40,  10,  20,-500, -520, -500, -520, -500, -520, -500, -520, -500"
+            bottomx="  0,100,150,500,1000,1500,2000,2600,3000,3120"
+            bottomy="400,300,470,300, 400, 450, 400,-200,-600,-400" />
 
+ 
+<levelsection type="timedstill" time="3000" /> <!-- 0 -->
 
-<levelsection type="timedstill" time="3000" /> <!-- 1 -->
-
-<levelsection type="scrollx" length="45" speed="70" > <!-- length=2160 -->  <!-- 2 -->
+<levelsection type="scrollx" length="45" speed="70" > <!-- length=2160 -->  <!-- 1 -->
               
 	<enemyInstance type="drone" begin="10" x="800" y="100" direction="180" repeat="4" repeatdelay="40"/>
 	<enemyInstance type="drone" begin="210" x="800" y="400" direction="180" repeat="4" repeatdelay="40"/>              
@@ -356,25 +366,33 @@ datak="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,2,19,50,20,55,56,24,23,55,50,20,21,34,3
 	
 </levelsection>
 
-<levelsection type="scrollxup" length="20" speed="50" /> <!-- 3 -->
+<levelsection type="scrollxup" length="20" speed="50" > <!-- length=960 -->  <!-- 2 -->
 
  	<enemyInstance type="pod" begin="240" x="800" y="100" direction="180" />
+</levelsection>
 
 
-<levelsection type="scrollx" length="4" speed="70" />  <!-- 4 -->
-<levelsection type="scrollx" length="4" speed="50" />  <!-- 5 -->
-<levelsection type="scrollx" length="1" speed="30" />  <!-- 6 -->
-<levelsection type="scrollx" length="1" speed="15" />  <!-- 7 -->
+<levellayer type="shapemap" relativespeed="1.0" start="3" end="9" image="@drawable/fillwall2"
+            topx="0,20,40,60,80,100,120,140,160,180,200,220,240,260,280,300,320,340,360,380,400,420,440,480"
+            topy="0,20, 0,20, 0, 20,  0, 20,  0, 20,  0, 20,  0, 20,  0, 20,  0, 20,  0, 20,  0, 20,  0,100"
+            bottomx="  0, 20, 40, 60, 80,100,120,140,160,180,200,220,240,260,280,300,320,340,360,380,400,420,440,480"
+            bottomy="480,460,480,460,480,460,480,460,480,460,480,460,480,460,480,460,480,460,480,460,480,460,480,300" />
+	
 
-<levelsection type="bossstill" numbosses="1" >
+<levelsection type="scrollx" length="4" speed="70" />  <!-- length=192 --> <!-- 3 --> 
+<levelsection type="scrollx" length="4" speed="50" />  <!-- length=192 --> <!-- 4 -->
+<levelsection type="scrollx" length="1" speed="30" />  <!-- length=48 -->  <!-- 5 -->
+<levelsection type="scrollx" length="1" speed="15" />  <!-- length=48 -->  <!-- 6 -->  <!-- tot=480 -->
+
+<levelsection type="bossstill" numbosses="1" >         <!-- 7 -->
 	<enemyInstance type="blob" begin="2100" x="800" y="240" spline="700,240,750,240,700,240" />
 </levelsection>
 
-<levelsection type="scrollx" length="1" speed="50" />  <!-- 8 -->
-<levelsection type="scrollx" length="2" speed="70" />  <!-- 9 -->
-<levelsection type="scrollx" length="2" speed="90" />  <!-- 10 -->
+<levelsection type="scrollx" length="1" speed="50" />  <!-- 9 -->
+<levelsection type="scrollx" length="2" speed="70" />  <!-- 10 -->
+<levelsection type="scrollx" length="2" speed="90" />  <!-- 11 -->
 
-<levelsection type="scrollx" length="40" speed="150" />   <!-- 11 -->
+<levelsection type="scrollx" length="40" speed="150" />   <!-- 12 -->
 
 	<enemyInstance type="momma" begin="1000" x="800" y="120" repeat="3" repeatdelay="70" direction="180"  spline="700,150,650,90,600,120,550,80,500,400,400,80,300,100,100,50,0,0"/>
 	<enemyInstance type="bat" begin="1080" x="800" y="130" direction="180" />
@@ -423,9 +441,9 @@ datak="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,2,19,50,20,55,56,24,23,55,50,20,21,34,3
 	<enemyInstance type="pod" begin="2260" x="800" y="260" direction="180" />
 
 
-<levelsection type="scrollxdown" length="30" speed="150" />   <!-- 12 -->
+<levelsection type="scrollxdown" length="30" speed="150" />   <!-- 13 -->
 
-<levelsection type="scrollx" length="30" speed="70" />    <!-- 13 -->
+<levelsection type="scrollx" length="30" speed="70" />    <!-- 14 -->
 
 
 <levelsection type="still" >     <!-- 14 -->
