@@ -311,8 +311,9 @@ public class LevelLoader {
             
 		}
 		
-        return shooterEngineContext.mLevelSections.setLevelMap(data, width, height,
-        													   BitmapFactory.decodeResource(shooterEngineContext.mContext.getResources(), tiles),
+		shooterEngineContext.mBitmapWarehouse.add(shooterEngineContext, tiles);
+		
+        return shooterEngineContext.mLevelSections.setLevelMap(shooterEngineContext, data, width, height, tiles,
         		                                               tilewidth, tileheight, startxright, startybottom);
 	}
 	
@@ -422,17 +423,17 @@ public class LevelLoader {
 	        	
 		}
 		
+		shooterEngineContext.mBitmapWarehouse.add(shooterEngineContext, image);
+				
 		switch (type) {
 		
 		case LayerTypeImage:
 			
-			return new LevelLayerImage(shooterEngineContext, relativespeed, start, end,
-                                       BitmapFactory.decodeResource(shooterEngineContext.mContext.getResources(), image));
+			return new LevelLayerImage(shooterEngineContext, relativespeed, start, end, image);
 		 
 		case LayerTypeShapeMap:
 			
-			return new LevelLayerShapeMap(shooterEngineContext, relativespeed, start, end,
-                    					  BitmapFactory.decodeResource(shooterEngineContext.mContext.getResources(), image),
+			return new LevelLayerShapeMap(shooterEngineContext, relativespeed, start, end, image,
                     					  top, bottom);
 		}
 		

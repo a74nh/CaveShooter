@@ -1,6 +1,5 @@
 package com.sleepware.ShooterEngine;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 public class LevelMap {
@@ -18,7 +17,7 @@ public class LevelMap {
 	private int mTileSizeHeight;
 	
 	
-	public LevelMap(String mapDataString, int width, int height, Bitmap tilesImage, int tilewidth, int tileheight) {
+	public LevelMap(ShooterEngineContext shooterEngineContext, String mapDataString, int width, int height, int tilesId, int tilewidth, int tileheight) {
 		
 		//Convert mapData
 		
@@ -39,7 +38,7 @@ public class LevelMap {
 		//mMapWidth = width;
 		//mMapHeight = height;
 		
-		mTiles = new LevelTiles (tilesImage, tilewidth, tileheight);
+		mTiles = new LevelTiles (shooterEngineContext, tilesId, tilewidth, tileheight);
 		
 		mTileSizeWidth = tilewidth;
 		mTileSizeHeight = tileheight;

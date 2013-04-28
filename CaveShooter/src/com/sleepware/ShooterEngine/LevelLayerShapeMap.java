@@ -3,8 +3,6 @@ package com.sleepware.ShooterEngine;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.math.Vector2;
-
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -25,9 +23,9 @@ public class LevelLayerShapeMap extends LevelLayerImage {
 	private Path mPath;
 	private Paint mPaint;
 
-	public LevelLayerShapeMap(ShooterEngineContext shooterEngineContext, double relativeSpeed, int start, int finish, Bitmap image, String topCoords, String bottomCoords)
+	public LevelLayerShapeMap(ShooterEngineContext shooterEngineContext, double relativeSpeed, int start, int finish, int imageid, String topCoords, String bottomCoords)
 	{
-		super(shooterEngineContext, relativeSpeed, start, finish, image);
+		super(shooterEngineContext, relativeSpeed, start, finish, imageid);
 		
 		mTopCoords = splitString(topCoords);
 		mBottomCoords = splitString(bottomCoords);

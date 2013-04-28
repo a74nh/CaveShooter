@@ -56,7 +56,7 @@ public class LevelLayer {
     		mStarted=true;
     	}
     	
-    	if (mStarted && levelSection.mId>=mFinish) {
+    	if (mStarted && levelSection.mId>mFinish) {
     		mFinished=true;
     		return true;
     	}

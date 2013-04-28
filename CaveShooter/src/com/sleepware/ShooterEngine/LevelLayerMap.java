@@ -1,6 +1,5 @@
 package com.sleepware.ShooterEngine;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 public class LevelLayerMap extends LevelLayer {
@@ -18,7 +17,7 @@ public class LevelLayerMap extends LevelLayer {
 	private int mTileSizeHeight;
 
 	
-	public LevelLayerMap(ShooterEngineContext shooterEngineContext, double relativeSpeed, int start, int finish, String mapDataString, int width, int height, Bitmap tilesImage, int tilewidth, int tileheight)
+	public LevelLayerMap(ShooterEngineContext shooterEngineContext, double relativeSpeed, int start, int finish, String mapDataString, int width, int height, int tilesId, int tilewidth, int tileheight)
 	{
 		super(shooterEngineContext, relativeSpeed, start, finish);
 		
@@ -41,7 +40,7 @@ public class LevelLayerMap extends LevelLayer {
 		//mMapWidth = width;
 		//mMapHeight = height;
 		
-		mTiles = new LevelTiles (tilesImage, tilewidth, tileheight);
+		mTiles = new LevelTiles (shooterEngineContext, tilesId, tilewidth, tileheight);
 		
 		mTileSizeWidth = tilewidth;
 		mTileSizeHeight = tileheight;

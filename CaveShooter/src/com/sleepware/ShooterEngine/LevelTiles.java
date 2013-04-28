@@ -21,10 +21,9 @@ public class LevelTiles {
 //	private int mNumTilesY;
 	
 	
-	LevelTiles (Bitmap tiles, int tilewidth, int tileheight) {
+	LevelTiles (ShooterEngineContext shooterEngineContext, int tilesId, int tilewidth, int tileheight) {
 
-		//mTiles = Global.mContext.getResources().getDrawable(imageId);
-		mTiles =  tiles; // BitmapFactory.decodeResource(ShooterEngine.mContext.getResources(), imageId);
+		mTiles =shooterEngineContext.mBitmapWarehouse.getImage(tilesId);
 
     	mTileSizeWidth = tilewidth;
     	mTileSizeHeight = tileheight;

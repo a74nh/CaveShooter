@@ -1,7 +1,6 @@
 package com.sleepware.ShooterEngine;
 
 import java.util.ArrayList;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 
@@ -44,7 +43,7 @@ public class LevelSections {
     public double mYBottomWallPos;
     
     private double mXLeftWallPos;
-    private double mYTopWallPos;
+//    private double mYTopWallPos;
 
     
 
@@ -77,7 +76,7 @@ public class LevelSections {
         mYBottomWallPos = mYStartBottomWallPos;		
         
         mXLeftWallPos = mXRightWallPos - canvasWidth;
-        mYTopWallPos = mYBottomWallPos - canvasHeight;
+ //       mYTopWallPos = mYBottomWallPos - canvasHeight;
         
         mLastTimeJumpedSection = now;
         
@@ -200,7 +199,7 @@ public class LevelSections {
     	//Set top and left
     	
     	mXLeftWallPos = mXRightWallPos-canvasWidth;
-    	mYTopWallPos = mYBottomWallPos-canvasHeight;
+ //   	mYTopWallPos = mYBottomWallPos-canvasHeight;
 
     	//need this???
     	mRemaining = (int)(section.mEndPosition-mXRightWallPos);
@@ -293,14 +292,14 @@ public class LevelSections {
     }
     */
     
-    public LevelMap setLevelMap(String mapDataString, int width, int height, Bitmap tilesImage, int tilewidth, int tileheight, int startxright, int startybottom) {
+    public LevelMap setLevelMap(ShooterEngineContext shooterEngineContext, String mapDataString, int width, int height, int tilesId, int tilewidth, int tileheight, int startxright, int startybottom) {
     	
     	mXStartRightWallPos = startxright * tilewidth;
     	mYStartBottomWallPos = startybottom * tileheight;
     	
     	mLevelLength = mXStartRightWallPos;
     	
-    	mLevelMap = new LevelMap(mapDataString, width, height, tilesImage, tilewidth, tileheight);
+    	mLevelMap = new LevelMap(shooterEngineContext, mapDataString, width, height, tilesId, tilewidth, tileheight);
     	return mLevelMap;
     }
  

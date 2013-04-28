@@ -23,6 +23,8 @@ public class ShooterEngineContext {
 	public int mLives;
 	public int mDebug1;
 
+	public BitmapWarehouse mBitmapWarehouse;
+	
 	
 	ShooterEngineContext(Context context) {
 
@@ -39,6 +41,8 @@ public class ShooterEngineContext {
 		mInputController = new InputController(this);
     	mStateRunning=false;
 
+    	mBitmapWarehouse = new BitmapWarehouse();
+    	
 		mScore=0;
 		mFPS=0;
 		mLives=9;  ///TODO:  NOOO!!!! Set from xml!!!!

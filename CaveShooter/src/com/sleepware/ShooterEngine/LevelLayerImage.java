@@ -1,18 +1,16 @@
 package com.sleepware.ShooterEngine;
 
-import java.util.ArrayList;
-
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 public class LevelLayerImage extends LevelLayer {
 	
-    private Bitmap mImage;   //TODO: OUCH! into resources please!!
+    private Bitmap mImage;
     
-	public LevelLayerImage(ShooterEngineContext shooterEngineContext, double relativeSpeed, int start, int finish, Bitmap image)
+	public LevelLayerImage(ShooterEngineContext shooterEngineContext, double relativeSpeed, int start, int finish, int imageid)
 	{
 		super(shooterEngineContext, relativeSpeed, start, finish);
-		mImage =image;
+		mImage =shooterEngineContext.mBitmapWarehouse.getImage(imageid);
 	}
 
 	
@@ -28,7 +26,6 @@ public class LevelLayerImage extends LevelLayer {
 
     	int xOffset = ((int)mXPosition) % mImage.getWidth();
     	int yOffset = Math.abs((int)mYPosition) % mImage.getHeight();
-    	
     	
     	//mShooterEngineContext.mDebug1 =  yOffset;
     	    	
