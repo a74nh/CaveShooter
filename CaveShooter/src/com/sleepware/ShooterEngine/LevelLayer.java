@@ -62,8 +62,8 @@ public class LevelLayer {
     	}
     	
     	if(mStarted) {
-    		mXPosition+=xMovement;
-    		mYPosition+=yMovement;
+    		mXPosition+=(xMovement*mRelativeSpeed);
+    		mYPosition+=(yMovement*mRelativeSpeed);
     		mLeftPos = mXPosition-canvasWidth;
     		mTopPos = mYPosition-canvasHeight;
     	}
