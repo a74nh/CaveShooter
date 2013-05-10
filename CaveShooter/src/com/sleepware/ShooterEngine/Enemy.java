@@ -1,18 +1,37 @@
 package com.sleepware.ShooterEngine;
 
+import com.badlogic.gdx.math.Vector3;
+
 
 
 public class Enemy extends Entity {
 	
-	
+	MovementType mMovementType;
+	double mSpeed;
 	
     private long mDeathTime;    //when it should auto die
- 
-
+	    
+    //For MovementTypeHomingMissle
+	double vx;
+	double vy;
+	double mDirectionRadians;
+	double mDirectionDegrees;
     
-    public Enemy(ShooterEngineContext shooterEngineContext, long now, double x, double y, EntityType type) {
+    //For MovementTypeSpline	 
+    int mSplineIndex;
+    Vector3 mDestination; //Where the next point is
+    float mDistanceToNext; //Distance to the next point
+    //Drawable fooimage; //for drawing spots of the spline
 
-    	super(shooterEngineContext, now, x, y, type);
+ 
+    
+    public void init(ShooterEngineContext shooterEngineContext, int id,
+    		         long now, double x, double y, 
+    		         double xAdditionalSpeed, double yAdditionalSpeed, 
+    		         EntityType type, MovementType movementType, Entity parent,
+    		         int parentDeathAttack) {
+
+    	super.init(shooterEngineContext, id, now, x, y, type, parent, parentDeathAttack);
 
     	switch(type.mType) {
     	
@@ -27,6 +46,9 @@ public class Enemy extends Entity {
     		mCollisionType =CIRCLE_COLLISION;
     	}
     	
+    	mMovementType = movementType;
+        mSpeed = (double)type.getInitialSpeed();
+
         mState = STATE_NEW;  
         
         mDeathTime = now + type.getLifetime();
@@ -34,6 +56,9 @@ public class Enemy extends Entity {
         int enemyTypeBulletListSize =mType.getGunTypeList().size();
         
 		mLastGunFiredList = new long[enemyTypeBulletListSize];
+		
+		mMovementType.OnEnemyConstruction(this, xAdditionalSpeed, yAdditionalSpeed);
+    	
     }
     
  
@@ -52,7 +77,10 @@ public class Enemy extends Entity {
     		return false;
     	}
     	
-    	
+        if(!mMovementType.updatePhysics(this, now, elapsed, canvasWidth, canvasHeight)) {
+        	return false;
+        }
+
     	switch(mState) {
     	
     	case STATE_NEW:
@@ -68,8 +96,7 @@ public class Enemy extends Entity {
 	    		
 			    if (enemyGun.getRate() + mLastGunFiredList[i] <= now ) {
 			    	
-		            Enemy newBullet = enemyGun.fire(mShooterEngineContext, now, mX, mY, mXSpeed, mYSpeed);
-		            mShooterEngineContext.mEnemies.addEnemy(newBullet);
+		            enemyGun.fire(mShooterEngineContext, mShooterEngineContext.mEnemies, now, mX, mY, mXSpeed, mYSpeed, this);
 		            mLastGunFiredList[i]=now;
 			    }
 	    	}
@@ -79,5 +106,4 @@ public class Enemy extends Entity {
     	return true;
     }
 
-    
 }

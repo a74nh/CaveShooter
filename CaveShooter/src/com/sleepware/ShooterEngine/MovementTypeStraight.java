@@ -28,10 +28,26 @@ public class MovementTypeStraight extends MovementType {
         mGravitySinAccelDirectionRadians = Math.sin(mGravityAccelDirectionRadians);
     }
     
+    public void OnEnemyConstruction(Enemy enemy, double xAdditionalSpeed, double yAdditionalSpeed) {
+            	    	
+        //sort out the initial speed
+    	enemy.mXSpeed = ((double)enemy.mType.getInitialSpeed() * mCosAccelDirectionRadians) + xAdditionalSpeed;
+    	enemy.mYSpeed = ((double)enemy.mType.getInitialSpeed() * mSinAccelDirectionRadians) + yAdditionalSpeed;
+    }
     
-    public Enemy spawn(ShooterEngineContext shooterEngineContext, long now, double x, double y, double xAdditionalSpeed, double yAdditionalSpeed, EntityType entityType) {
+ 
+    public boolean updatePhysics(Enemy enemy, long now, double elapsed, int canvasWidth, int canvasHeight) {
     	
-    	return new EnemyStraight(shooterEngineContext, now, x, y, xAdditionalSpeed, yAdditionalSpeed, entityType, this);
-	}
+    	final double additionalSpeed = ((enemy.mType.getAcceleration() * elapsed)/1000.0);
+    	final double additionalGravitySpeed = ((mGravity * elapsed)/1000.0);
+
+    	enemy.mXSpeed += (additionalSpeed * mCosAccelDirectionRadians) + (additionalGravitySpeed * mGravityCosAccelDirectionRadians);
+    	enemy.mYSpeed += (additionalSpeed * mSinAccelDirectionRadians) + (additionalGravitySpeed * mGravitySinAccelDirectionRadians);
+    	
+    	enemy.mX += ((enemy.mXSpeed * elapsed)/1000.0);
+    	enemy.mY += ((enemy.mYSpeed * elapsed)/1000.0);
+	    	
+    	return true;  	
+    }
 
 }

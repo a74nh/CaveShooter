@@ -10,6 +10,11 @@ public class Entity {
 	
 	ShooterEngineContext mShooterEngineContext;
 
+	protected int mId; //unique id
+	
+	public Entity mParent;  //Pointer to parent. Only use if mParent.mId==mParentId
+	public int mParentId;  //id of parent when created
+	
     protected double mX;
     protected double mY;
 
@@ -50,14 +55,33 @@ public class Entity {
     public static final int CIRCLE_COLLISION = 1;
     public static final int POINT_COLLISION = 2;
     
+    private int mParentDeathAttack =0;
     
-    public Entity(ShooterEngineContext shooterEngineContext, long now, double x, double y, EntityType type) {
+    
+    public Entity() {
+    	mState=STATE_DEAD;
+    }
+
+    
+    public void init(ShooterEngineContext shooterEngineContext, int id,
+    		         long now, double x, double y,
+    		         EntityType type, Entity parent,
+    		         int parentDeathAttack) {
     	
     	mShooterEngineContext = shooterEngineContext;
+    	
+    	mId = id;
+    	
     	mX = x;
         mY = y;
         mType = type;
 
+		if(parent!=null) {
+			mParent = parent;
+			mParentId = parent.mId;
+			mParentDeathAttack = parentDeathAttack;
+		}
+		
         mState = STATE_NEW;  
  
         mSpawnedTime = now;
@@ -74,6 +98,11 @@ public class Entity {
 		mCollisionType =CIRCLE_COLLISION;
 		
 		hatchParasites(now);
+    }
+    
+    public void clear() {
+    	mState=STATE_DEAD;
+    	mId = 0;
     }
 
     public double getX() {
@@ -114,7 +143,8 @@ public class Entity {
     }
     
     public void doDraw(Canvas canvas) {
-
+    	if (mState==STATE_DEAD) return;
+    	
     	internalDoDraw(canvas, mType.getImage());
     }
     
@@ -133,6 +163,8 @@ public class Entity {
     
     
     protected void doExplosions(long now) {
+    
+    	if (mState==STATE_DEAD) return;
     	
     	mState=STATE_DEAD;
     	
@@ -140,8 +172,7 @@ public class Entity {
     		
     		EnemyGunType enemyExplosionGun = mType.getExplosionGunTypeList().get(i);
     				    	
-	            Enemy newBullet = enemyExplosionGun.fire(mShooterEngineContext, now, mX, mY, mXSpeed, mYSpeed);
-	            mShooterEngineContext.mEnemies.addEnemy(newBullet);
+	        enemyExplosionGun.fire(mShooterEngineContext, mShooterEngineContext.mEnemies, now, mX, mY, mXSpeed, mYSpeed, this);
     	}
     	
     	//Kill all its attached parasites too..
@@ -151,7 +182,6 @@ public class Entity {
 			
 			if(e.mState!=STATE_DEAD) {
 				e.doExplosions(now);
-				mShooterEngineContext.mEnemies.removeEnemy((Enemy)e);
 			}
 		}
 		
@@ -162,6 +192,8 @@ public class Entity {
         
     
     public boolean doCollision(Entity opposingEnemy) {
+
+    	if (mState==STATE_DEAD) return false;
 
 		switch(mCollisionType) { //good guy
 		
@@ -213,9 +245,9 @@ public class Entity {
     
     private void hatchParasite(long now, int id) {
     	
-        Enemy e = mType.getParasiteTypeList().get(id).hatch(now, this);
+        Enemy e = mType.getParasiteTypeList().get(id).hatch(mShooterEngineContext, now, mX, mY, mXSpeed, mYSpeed, this);
+
         mParasiteList.add(e);
-        mShooterEngineContext.mEnemies.addEnemy(e);
     }
     
     private void hatchParasites(long now) {
@@ -231,10 +263,10 @@ public class Entity {
 	public boolean doHit(long now, int damage) {
 		 
 		 //Cannot hit these types:
-		 //STATE_NEW
-		 //STATE_OFFSCREEN
-		 //STATE_DEAD
-		 //STATE_INVINCIBLE
+		 assert(mState!=STATE_NEW);
+		 assert(mState!=STATE_OFFSCREEN);
+		 assert(mState!=STATE_DEAD);
+		 assert(mState!=STATE_INVINCIBLE);
 		 
 		 if(mState==STATE_ACTIVE) {
 			 
@@ -246,12 +278,17 @@ public class Entity {
 				mShooterEngineContext.mScore += mType.getBonusScore();
 				
 	    		doExplosions(now);
+	    		
+	    		if(mParent!=null && mParent.mId==mParentId) {
+	            	mParent.doHit(now, mParentDeathAttack);
+	    		}
+	    		
 	    		return true;
 	    	}
 		 }
 		 return false;
 	}
-    
+	
 	
 	public void doCollectPowerUp(long now, int gunId) {
 		return;

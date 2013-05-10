@@ -291,11 +291,6 @@ public class ShooterEngine extends Thread {
     	if(player!=null && player.doCollisions(mEngineLocalNow)) {
     		playerDied(mEngineLocalNow);
         }
-        
-        //The list may be full of blanks by now
-    	
-    	mShooterEngineContext.mEnemies.cleanup();
-        
     	
     	//Last because could house all sorts of state
     	mShooterEngineContext.mHud.updatePhysics(mEngineLocalNow, elapsed, mCanvasWidth, mCanvasHeight);

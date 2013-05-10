@@ -1,12 +1,8 @@
 package com.sleepware.ShooterEngine;
 
-import java.util.ArrayList;
+public class PlayerBullets extends Enemies {
 
-
-import android.graphics.Canvas;
-
-public class PlayerBullets {
-
+	/*
     private ArrayList<Enemy> mBulletList;
 
     
@@ -16,14 +12,6 @@ public class PlayerBullets {
         mBulletList.clear();
 	}
 	
-	
-	public int getNumberOfBullets() {
-		return mBulletList.size();
-	}
-	
-	public Enemy getBullet(int i) {
-		return mBulletList.get(i);
-	}
 	
 	public Enemy deleteBullet(int i) {
 		return mBulletList.remove(i);
@@ -37,46 +25,44 @@ public class PlayerBullets {
 
     	mBulletList.clear();
     }
-
-    
+*/
+    /*
     public void doDraw(Canvas canvas) {
 
-	    int numBullets = mBulletList.size();
+	    int numBullets = mEnemyList.size();
 	    for (int index = 0; index < numBullets; index ++) {
 	    	
-	    	mBulletList.get(index).doDraw(canvas);
+	    	mEnemyList.get(index).doDraw(canvas);
 	    }
     }
-    
+    */
+	/*
     public void updatePhysics(long now, double elapsed, int canvasWidth, int canvasHeight) {
 	
     	Enemy c;
 	    
-	    for (int index = 0; index < mBulletList.size(); index ++) {
+	    for (int index = 0; index < mEnemyList.size(); index ++) {
 	    	
-	    	c = mBulletList.get(index);
+	    	c = mEnemyList.get(index);
 	    	
 	    	c.updatePhysics(now, elapsed, canvasWidth, canvasHeight);
 	
 	    	if(c.mState == Entity.STATE_OFFSCREEN)  {
-	    		mBulletList.remove(index);
-	    		index--;
+	    		c.clear();
 	    	}
 	    }   
     }
-    
+    */
     
     public void doCollisions(ShooterEngineContext shooterEngineContext, long now) {
     	
     	//Check every enemy item against everything in playbulletlist
 
-    	for (int playerBulletIndex=0; playerBulletIndex<mBulletList.size(); playerBulletIndex++) {
+    	for (int playerBulletIndex=0; playerBulletIndex<mEnemyList.size(); playerBulletIndex++) {
 	    	    		
-    		if(shooterEngineContext.mEnemies.doCollision(now, mBulletList.get(playerBulletIndex))) {
+    		if(shooterEngineContext.mEnemies.doCollision(now, mEnemyList.get(playerBulletIndex))) {
     			
-    			//Potentially dangerous - but no one else should be using this list at the same time
-    			mBulletList.remove(playerBulletIndex);
-				playerBulletIndex--;
+    			; //nothing to do here? because it'll be cleared as part of updatePhysics
     		}
     	}
     		

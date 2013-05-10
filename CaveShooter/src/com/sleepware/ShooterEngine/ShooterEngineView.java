@@ -19,9 +19,7 @@ public class ShooterEngineView extends SurfaceView implements SurfaceHolder.Call
 
     private boolean mUserControlable;
     private int mLevel;
-    
-    private static Handler mHandler;
-    
+        
     public ShooterEngineView(Context context, AttributeSet attrs) {
         super(context, attrs);
 

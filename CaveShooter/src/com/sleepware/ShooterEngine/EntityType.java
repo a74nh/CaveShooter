@@ -47,8 +47,8 @@ public class EntityType {
 	private ArrayList<EnemyGunType> mExplosionGunTypeList;
 	
 	private ArrayList<EnemyParasiteType> mParasiteTypeList;
-
-    
+		 
+	
 	public EntityType(String name, int type, Drawable image, int acceleration, int speed, int delay, int hitPoints, int lifetime,
 	         	      int bonusScore, int bonusGunId, boolean boss) {
 	

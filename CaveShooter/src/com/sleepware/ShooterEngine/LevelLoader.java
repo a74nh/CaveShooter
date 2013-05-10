@@ -252,7 +252,7 @@ public class LevelLoader {
 		EntityType grub = shooterEngineContext.mEnemyTypes.getEnemyType(type);
 		
 		if(grub!=null) {
-			return new EnemyParasiteType(shooterEngineContext, grub, offsetx, offsety, parentDeathAttack);
+			return new EnemyParasiteType(shooterEngineContext, grub, new MovementTypeAttached(offsetx, offsety), parentDeathAttack);
 		}
 		return null;
 	}

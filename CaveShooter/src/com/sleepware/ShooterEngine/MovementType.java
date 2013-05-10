@@ -8,24 +8,23 @@ public class MovementType {
     public static final int MOVEMENT_HOMING = 1;
     public static final int MOVEMENT_HOMING_MISSILE = 2;
     public static final int MOVEMENT_SPLINE = 3;
-   // public static final int MOVEMENT_ATTACHED = 3;
+    public static final int MOVEMENT_ATTACHED = 4;
 
-    int mMovementType;
-
+    public int mMovementType;
     
-    public MovementType () {
-	}
-	
+
     public MovementType(int movementType) {
         
     	mMovementType = movementType;
     }
     
-    
-	/** Spawn Into Enemy **/
-	
-    public Enemy spawn(ShooterEngineContext shooterEngineContext, long now, double x, double y, double xAdditionalSpeed, double yAdditionalSpeed, EntityType entityType) {
-    	return null;
+    public void OnEnemyConstruction(Enemy enemy, double xAdditionalSpeed, double yAdditionalSpeed) {
+    	assert(false);
     }
     
+    public boolean updatePhysics(Enemy enemy, long now, double elapsed, int canvasWidth, int canvasHeight) {
+    	return false;
+    }
+    
+
 }

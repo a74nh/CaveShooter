@@ -71,8 +71,7 @@ public class LevelSection {
         		
         		//Found an enemy to spawn
         		
-        		Enemy e = possibleEnemy.spawn(mShooterEngineContext, now);
-        		mShooterEngineContext.mEnemies.addEnemy(e);
+        		possibleEnemy.spawn(mShooterEngineContext, now);
         		
         		if(possibleEnemy.mRepeat>0) {
         			index++;

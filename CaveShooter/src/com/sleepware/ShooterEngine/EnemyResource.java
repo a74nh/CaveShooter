@@ -26,15 +26,14 @@ public class EnemyResource {
 	}
 	
 	
-	public Enemy spawn(ShooterEngineContext shooterEngineContext, long now) {
-		Enemy e = mMovementType.spawn(shooterEngineContext, now, mXStart, mYStart, 0, 0, mEnemyType);
-	
+	public void spawn(ShooterEngineContext shooterEngineContext, long now) {
+		
+		shooterEngineContext.mEnemies.newEnemy(shooterEngineContext, now, mXStart, mYStart, 0, 0, mEnemyType, mMovementType, null, 0);
+			
 		if(mRepeat>0) {
 			mRepeat--;
 			mBegin+=mRepeatdelay;
 		}
-		
-		return e;
 	}
 
 }

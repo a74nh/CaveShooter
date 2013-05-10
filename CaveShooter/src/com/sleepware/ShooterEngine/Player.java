@@ -21,8 +21,9 @@ public class Player extends Entity {
      
 	 public Player(ShooterEngineContext shooterEngineContext, long now, double x, double y, PlayerType playerType) {
 
-		 super(shooterEngineContext, now,x,y,playerType);
-
+		 super();
+		 init(shooterEngineContext, 1, now, x, y, playerType, null, 0);
+		    
 	     mState = STATE_INVINCIBLE;
 	     mStateTimeStart =now;
 	     
@@ -126,8 +127,7 @@ public class Player extends Entity {
 	    		
 			    if (playerGun.getRate() + mLastGunFiredList[i] <= now ) {
 			    	
-		            Enemy newBullet = playerGun.fire(mShooterEngineContext, now, mX, mY, mXSpeed, mYSpeed);
-		            mShooterEngineContext.mBullets.addBullet(newBullet);
+		            playerGun.fire(mShooterEngineContext, mShooterEngineContext.mBullets, now, mX, mY, mXSpeed, mYSpeed, this);
 		            mLastGunFiredList[i]=now;
 			    }
     		}

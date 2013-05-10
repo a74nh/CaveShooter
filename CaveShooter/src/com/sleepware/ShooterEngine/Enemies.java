@@ -8,51 +8,49 @@ import android.os.Bundle;
 
 public class Enemies {
 	
-    private ArrayList<Enemy> mEnemyList;
+    protected ArrayList<Enemy> mEnemyList;
+    private int mLatestId;
     
     private static final String KEY_ENEMIES = "mEnemies";      
-
-    private static EnemyBlank mEnemyBlank;
-    private int mNumBlanks;
 	
 	public Enemies() {
 
 		mEnemyList = new ArrayList<Enemy>();
         mEnemyList.clear();
-        
-        mEnemyBlank =new EnemyBlank();
-        mNumBlanks=0;
 	}
 	
 	
     public void doStart() {
 
-    	mEnemyList.clear();        
+    	mEnemyList.clear();
+    	mLatestId=1;
     }
 
     
-    public void addEnemy(Enemy enemy) {
+    public Enemy newEnemy(ShooterEngineContext shooterEngineContext, 
+    	                 long now, double x, double y,
+    		             double xAdditionalSpeed, double yAdditionalSpeed,
+    		             EntityType type, MovementType movementType, Entity parent, int parentDeathAttack) {
     	
-        mEnemyList.add(enemy);
-    }
-    
-    
-    private void removeEnemy(int index) {
-    	//Just set it to a blank enemy for now to stop screwing with the list
-    	if(mEnemyList.get(index)!=mEnemyBlank) {
-    		mEnemyList.set(index, mEnemyBlank);
-    		mNumBlanks++;
-    	}
-    }
-    
-    public void removeEnemy(Enemy enemy) {
+    	Enemy e = null;
+    	int index;
     	
-    	int index = mEnemyList.indexOf(enemy);
-    	
-    	if(index!=-1) {
-            mEnemyList.set(index, mEnemyBlank);
-            mNumBlanks++;
-    	}
+	    for (index = 0; index < mEnemyList.size(); index ++) {
+	    	e = mEnemyList.get(index);
+	    	
+	    	if (e.mState==Entity.STATE_DEAD) {
+	    		break;
+	    	}	    	
+	    }
+	    //Didn't find anything
+	    if( index == mEnemyList.size() ) {
+	    	e = new Enemy();
+	    	mEnemyList.add(e);
+	    }
+
+	    e.init(shooterEngineContext, mLatestId++, now, x, y, xAdditionalSpeed, yAdditionalSpeed, type, movementType, parent, parentDeathAttack);
+	    
+	    return e;
     }
     
     
@@ -64,20 +62,7 @@ public class Enemies {
 	    	mEnemyList.get(index).doDraw(canvas);
 	    }
     }
-    
-    public void cleanup() {
-    	
-	    for (int index = 0; index < mEnemyList.size() && mNumBlanks>0; index ++) {
-	    	if(mEnemyList.get(index).getState()==Entity.STATE_DEAD) {
-	    		//Enemy is dead
-	    		mEnemyList.remove(index);
-	    		index--;
-	    		mNumBlanks--;
-	    	}
-	    }
-	    //Force this just to be sure
-	    mNumBlanks=0;
-    }
+
     
     public void updatePhysics(long now, double elapsed, int canvasWidth, int canvasHeight) {
 	
@@ -89,8 +74,7 @@ public class Enemies {
 	    	
 	    	if(!c.updatePhysics(now, elapsed, canvasWidth, canvasHeight)) {
 	    		//Enemy died on us
-	    		mEnemyList.remove(index);
-	    		index--;
+	    		c.clear();
 	    	}
 	    }	    
     }
@@ -138,7 +122,6 @@ public class Enemies {
 		    	if(enemy.doCollision(goodGuy)) {
 
 					if(enemy.doHit(now, gtype.getAttackDamage())) {
-						removeEnemy(index);
 					
 						//Only the player can collect any goodies
 		    			if(gtype.mType==EntityType.TYPE_PLAYER && etype.hasBonusGun()) {

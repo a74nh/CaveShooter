@@ -1,40 +1,27 @@
 package com.sleepware.ShooterEngine;
 
+//TODO: make a ParasiteType as subclass of EnemyGunType
 
 public class EnemyParasiteType {
 
 	ShooterEngineContext mShooterEngineContext;
 	
 	private EntityType mEnemyType;  //how often it repeats
-
-	private int mOffsetx;
-	private int mOffsety;
-	private int mParentDeathAttack;
+	private MovementType mMovementType;
 	
-	public EnemyParasiteType(ShooterEngineContext shooterEngineContext, EntityType enemyType, int offsetx, int offsety, int parentDeathAttack) {
+	public int mParentDeathAttack; //Damage to send to parent when dies.
+	
+	
+	public EnemyParasiteType(ShooterEngineContext shooterEngineContext, EntityType enemyType, MovementType movementType, int parentDeathAttack) {
 		
 		mShooterEngineContext = shooterEngineContext;
 		mEnemyType =enemyType;
-		mOffsetx =offsetx;
-		mOffsety =offsety;
-		mParentDeathAttack =parentDeathAttack;
-	}
-
-	
-	public int getOffsetx() {
-		return mOffsetx;
+		mMovementType = movementType;
+		mParentDeathAttack = parentDeathAttack;
 	}
 	
-	public int getOffsety() {
-		return mOffsety;
-	}
-	
-	public int getParentDeathAttack() {
-		return mParentDeathAttack;
-	}
-	
-    public Enemy hatch(long now, Entity parent) {
+    public Enemy hatch(ShooterEngineContext shooterEngineContext, long now, double x, double y, double xAdditionalSpeed, double yAdditionalSpeed, Entity parent) {
     	
-		return new EnemyAttached(mShooterEngineContext, now, mOffsetx, mOffsety, mEnemyType, mParentDeathAttack, parent);
+		return mShooterEngineContext.mEnemies.newEnemy(mShooterEngineContext, now, x, y, 0, 0, mEnemyType, mMovementType, parent, mParentDeathAttack);
 	}
 }

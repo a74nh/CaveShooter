@@ -28,9 +28,9 @@ public class EnemyGunType {
 		return mGunLevel;
 	}
 	
-    public Enemy fire(ShooterEngineContext shooterEngineContext, long now, double x, double y, double xAdditionalSpeed, double yAdditionalSpeed) {
+    public void fire(ShooterEngineContext shooterEngineContext, Enemies enemies, long now, double x, double y, double xAdditionalSpeed, double yAdditionalSpeed, Entity parent) {
     	
-		return mMovementType.spawn(shooterEngineContext, now, x, y, xAdditionalSpeed, yAdditionalSpeed, mEnemyType);
+    	enemies.newEnemy(shooterEngineContext, now, x, y, 0, 0, mEnemyType, mMovementType, parent, 0);
 	}
     
 }
